@@ -1,6 +1,11 @@
 const url = 'https://api.weatherapi.com/v1/current.json?key=98efa64a40434a5a9a8170303230710&q=';
 let locationVal = 'Saint Petersburg Fl';
 
+let weatherInfo = JSON.parse(localStorage.getItem('weatherInfo')) || locationVal;
+function saveWeather(location) {
+    localStorage.setItem('weatherInfo', JSON.stringify(location));
+}
+
 const input = document.querySelector('input#location');
 const submitBtn = document.querySelector('input#submit');
 let city = document.querySelector('.city');
@@ -9,22 +14,23 @@ let localtime = document.querySelector('.localtime');
 let condition = document.querySelector('.condition-text');
 let conditionIcon = document.querySelector('.icon');
 let temp = document.querySelector('.temp');
-let tempUnit = document.querySelector('.temp>span');
 let feelsLike = document.querySelector('.feels-like');
 let celsDiv = document.querySelector('.cel');
 let fahrDiv = document.querySelector('.fah');
 const weatherPng = document.createElement('img');
 
 let unitCels = document.querySelector('#cels');
+unitCels.checked;
+celsDiv.classList.add('selected');
 let unitFahr = document.querySelector('#fahr');
-
-
 
 
 
 submitBtn.addEventListener('click', e => {
     locationVal = input.value;
-    getWeather();
+    saveWeather(locationVal);
+    getWeather(locationVal);
+    input.value = '';
 });
 
 input.addEventListener('keypress', e => {
@@ -34,9 +40,9 @@ input.addEventListener('keypress', e => {
 });
 
 
-async function getWeather() {
+async function getWeather(loc) {
     try{
-        const response = await fetch(url+locationVal);
+        const response = await fetch(url+loc);
         const data = await response.json();
         if (response.status === 200) {
             console.log(data);
@@ -46,25 +52,34 @@ async function getWeather() {
             condition.innerHTML = data.current.condition.text;
             weatherPng.src = data.current.condition.icon;
             conditionIcon.appendChild(weatherPng);
-            
-            temp.innerHTML = `${data.current.temp_c}°`;
-            feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}`;
 
+            if (unitCels.checked) {
+                temp.innerHTML = `${data.current.temp_c}°`;
+                feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}°`;
+            } else {
+                temp.innerHTML = `${data.current.temp_f}°`;
+                feelsLike.innerHTML = `Feels like: ${data.current.feelslike_f}°`;
+            }
+    
+
+            //temp switch 
             celsDiv.addEventListener('click', e => {
-                if (!unitCels.checked) {
-                    unitCels.checked
-                    console.log('checked');
+        
+                    console.log('c checked');
                     temp.innerHTML = `${data.current.temp_c}°`;
-                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}`;
-                }
+                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}°`;
+                    fahrDiv.classList.remove('selected');
+                    celsDiv.classList.add('selected');
+                
             })
             fahrDiv.addEventListener('click', e => {
-                if (!unitFahr.checked) {
-                    unitFahr.checked;
-                    console.log('checked');
+              
+                    console.log('f checked');
                     temp.innerHTML = `${data.current.temp_f}°`;
-                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_f}`;
-                }
+                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_f}°`;
+                    celsDiv.classList.remove('selected');
+                    fahrDiv.classList.add('selected');
+                
             })
             
         } else {
@@ -75,5 +90,5 @@ async function getWeather() {
     }
 }
 
-getWeather();
+getWeather(weatherInfo);
 

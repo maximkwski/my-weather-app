@@ -14,7 +14,7 @@
     <div class="container">
         <div class="search-div">
             <label for="location"></label>
-            <input type="text" name="location" id="location" required placeholder="ex: Saint Petersburg Florida">
+            <input type="text" name="location" id="location" placeholder="ex: Saint Petersburg Florida" required>
             <input type="button" value="search" id="submit">
         </div>
         <div class="weather-data">
@@ -30,7 +30,7 @@
         </div>
         <div class="temp-switch">
             <div class="cel">
-                <input type="radio" name="unit" id="cels" checked>
+                <input type="radio" name="unit" id="cels">
                 <label for="cels">C</label>
             </div>
             <div class="fah">
@@ -39,7 +39,16 @@
             </div>
         </div>
     </div>
-    <footer></footer>
+    <footer>
+        <div class="footer">
+            built & designed by
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/maximkwski">maximkwski</a>
+            |
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/maximkwski/my-weather-app"><img
+                    id="icon" src="./assets/github-logo.png" alt="github-icon" /></a>
+            source
+        </div>
+    </footer>
 </body>
 
 </html>

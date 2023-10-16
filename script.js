@@ -11,9 +11,14 @@ let conditionIcon = document.querySelector('.icon');
 let temp = document.querySelector('.temp');
 let tempUnit = document.querySelector('.temp>span');
 let feelsLike = document.querySelector('.feels-like');
-let unitCels = document.querySelector('.cels');
-let unitFahr = document.querySelector('.fahr');
+let celsDiv = document.querySelector('.cel');
+let fahrDiv = document.querySelector('.fah');
 const weatherPng = document.createElement('img');
+
+let unitCels = document.querySelector('#cels');
+let unitFahr = document.querySelector('#fahr');
+
+
 
 
 
@@ -44,6 +49,23 @@ async function getWeather() {
             
             temp.innerHTML = `${data.current.temp_c}°`;
             feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}`;
+
+            celsDiv.addEventListener('click', e => {
+                if (!unitCels.checked) {
+                    unitCels.checked
+                    console.log('checked');
+                    temp.innerHTML = `${data.current.temp_c}°`;
+                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}`;
+                }
+            })
+            fahrDiv.addEventListener('click', e => {
+                if (!unitFahr.checked) {
+                    unitFahr.checked;
+                    console.log('checked');
+                    temp.innerHTML = `${data.current.temp_f}°`;
+                    feelsLike.innerHTML = `Feels like: ${data.current.feelslike_f}`;
+                }
+            })
             
         } else {
             console.log('server error: ', data.error.message);
@@ -54,3 +76,4 @@ async function getWeather() {
 }
 
 getWeather();
+

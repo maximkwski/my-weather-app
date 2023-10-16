@@ -20,7 +20,7 @@ let fahrDiv = document.querySelector('.fah');
 const weatherPng = document.createElement('img');
 
 let unitCels = document.querySelector('#cels');
-unitCels.checked;
+unitCels.checked = true;
 celsDiv.classList.add('selected');
 let unitFahr = document.querySelector('#fahr');
 
@@ -52,6 +52,7 @@ async function getWeather(loc) {
             condition.innerHTML = data.current.condition.text;
             weatherPng.src = data.current.condition.icon;
             conditionIcon.appendChild(weatherPng);
+            
 
             if (unitCels.checked) {
                 temp.innerHTML = `${data.current.temp_c}°`;
@@ -64,8 +65,7 @@ async function getWeather(loc) {
 
             //temp switch 
             celsDiv.addEventListener('click', e => {
-        
-                    console.log('c checked');
+                    unitCels.checked = true;
                     temp.innerHTML = `${data.current.temp_c}°`;
                     feelsLike.innerHTML = `Feels like: ${data.current.feelslike_c}°`;
                     fahrDiv.classList.remove('selected');
@@ -73,8 +73,7 @@ async function getWeather(loc) {
                 
             })
             fahrDiv.addEventListener('click', e => {
-              
-                    console.log('f checked');
+                    unitFahr.checked = true;
                     temp.innerHTML = `${data.current.temp_f}°`;
                     feelsLike.innerHTML = `Feels like: ${data.current.feelslike_f}°`;
                     celsDiv.classList.remove('selected');

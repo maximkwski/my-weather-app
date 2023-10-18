@@ -7,7 +7,7 @@ function saveWeather(location) {
 }
 
 const input = document.querySelector('input#location');
-const submitBtn = document.querySelector('input#submit');
+const submitBtn = document.querySelector('button#submit');
 let city = document.querySelector('.city');
 let country = document.querySelector('.country');
 let localtime = document.querySelector('.localtime');

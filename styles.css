@@ -12,18 +12,124 @@
 body {
     font-family: montserrat, sans-serif;
     height: 100vh;
-
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content 5fr min-content;
     justify-items: center;
+    background-image: url(./assets/bjark-DZ975EkUJH0-unsplash.jpg);
+    background-position: top center;
+    background-size: cover;
+}
 
+header {
+    margin: 1rem 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+.search-div {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+input#location {
+    width: 100%;
+    max-width: 285px;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    outline: none;
+    border-radius: 16px 0px 16px 0px;
+    border-bottom: 3px solid #fdb44b;
+    font-size: 18px;
+    font-weight: 300;
+
+    transition: 0.2s ease-in-out;
+}
+
+input#location:focus {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+input#location::placeholder {
+    color: rgb(67, 67, 67);
+}
+
+button img {
+    height: 20px;
+}
+
+button#submit {
+    background-color: transparent;
+    border: none;
+    background-color: #fdb44b;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+button#submit:active {
+    background-color: #fbc67b;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    padding: 1rem;
+}
+
+.city {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.country,
+.localtime {
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.condition-text {
+    margin: 0.5rem 0px;
+    font-weight: 500;
+}
+
+.condition {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.temp {
+    padding: 1rem;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.feels-like {
+    font-weight: 300;
 }
 
 
-
-.icon {
-    display: inline-block;
+.temp-switch {
+    display: flex;
+    gap: 1rem;
 }
 
 input[type="radio"] {
@@ -32,6 +138,10 @@ input[type="radio"] {
 
 .selected {
     border: 1px solid black;
+}
+
+footer {
+    margin: 1rem 0px;
 }
 
 footer img {

@@ -10,23 +10,25 @@
 </head>
 
 <body>
-    <header>MyWeather</header>
-    <div class="container">
+    <header>
         <div class="search-div">
             <label for="location"></label>
             <input type="text" name="location" id="location" placeholder="ex: Saint Petersburg Florida" required>
-            <input type="button" value="search" id="submit">
+            <!-- <input type="submit" value="search" id="submit"> -->
+            <button type="submit" id="submit"><img src="./assets/magnifier.png" alt="search"></button>
         </div>
+    </header>
+    <div class="container">
         <div class="weather-data">
             <div class="city"></div>
             <div class="country"></div>
             <div class="localtime"></div>
+            <div class="condition-text"></div>
             <div class="condition">
-                <span class="condition-text"></span>
-                <span class="icon"></span>
+                <div class="icon"></div>
+                <div class="temp"></div>
+                <div class="feels-like"></div>
             </div>
-            <div class="temp"></div>
-            <div class="feels-like"></div>
         </div>
         <div class="temp-switch">
             <div class="cel">

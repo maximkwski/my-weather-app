@@ -44,11 +44,17 @@ async function getWeather(loc) {
     try{
         const response = await fetch(url+loc);
         const data = await response.json();
+
         if (response.status === 200) {
             console.log(data);
             city.innerHTML = data.location.name;
             country.innerHTML = data.location.country;
-            localtime.innerHTML = data.location.localtime;
+            
+            const timeData = data.location.localtime;
+            const [date, time] = timeData.split(" ");
+            const [year, month, day] = date.split('-');
+            const dateData = `${month}/${day}`;
+            localtime.innerHTML = `${time} ${dateData}`;
             condition.innerHTML = data.current.condition.text;
             weatherPng.src = data.current.condition.icon;
             conditionIcon.appendChild(weatherPng);
